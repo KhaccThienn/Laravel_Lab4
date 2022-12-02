@@ -3,7 +3,7 @@
 @section('main')
     <div class="container-fluid">
         <h2>List Products</h2>
-
+        <a href="{{ route('product.create') }}" class="btn btn-primary"> &plus; New Product</a>
         <table class="table">
             <thead>
                 <tr>
@@ -25,9 +25,19 @@
                         <td>{{ $prod->name }}</td>
                         <td>{{ $prod->price }}</td>
                         <td>{{ $prod->CateName }}</td>
-                        <td>{{ $prod->image }}</td>
+                        <td class="w-25">
+                            <img src="uploads/{{ $prod->image }}" alt="{{ $prod->name }}" class="card-img">
+                        </td>
                         <td>{{ $prod->created_at }}</td>
-                        <td></td>
+                        <td>
+                            <form action="{{ route('product.delete', $prod->id) }}" method="post">
+                                <a href="{{ route('product.edit', $prod->id) }}"
+                                    class="btn btn-outline-success">Update</a>
+                                @method('DELETE') @csrf
+                                <button class="btn btn-outline-danger"
+                                    onclick="return confirm('Do you want to delete this product ?')">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

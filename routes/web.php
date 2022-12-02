@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +24,20 @@ Route::get('/category/create', [CategoryController::class, 'create'])->name('cat
 
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
 
-Route::delete('/category/{id}', [CategoryController::class, 'delete'])->name('category.delete');
-
-Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
 
 Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
 
+Route::delete('/category/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+
+Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+
+Route::post('/product', [ProductController::class, 'store'])->name('product.store');
+
+Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+
+Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
+
+Route::delete('/product/{id}', [ProductController::class, 'delete'])->name('product.delete');
